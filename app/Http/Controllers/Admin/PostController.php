@@ -36,7 +36,6 @@ class PostController extends Controller
         $user = Auth::user();
         $newPost = new Post();
         $newPost->user_id = $user->id;
-        $newPost->created_at = now();
         $newPost->fill($validati);
         $newPost->save();
 
@@ -57,7 +56,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view("admin.posts.edit", compact("post"));
     }
 
     /**
@@ -65,7 +64,10 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
-        //
+        $validati = $request->validated();
+        $post->updated_at = now();
+        $post->update($validati);
+        return redirect()->route("admin.posts.show", $post->id);
     }
 
     /**

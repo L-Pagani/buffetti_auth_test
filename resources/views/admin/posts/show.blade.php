@@ -15,8 +15,13 @@
                         </div>
                         <div class="card-body">{{ $post->description }}</div>
                         <div class="card-body">{{ $post->user->name }}</div>
-                        <div class="card-body">{{ $post->created_at->format('d/m/Y/ H:i:s') }}</div>
+                        @if ($post->created_at == $post->updated_at)
+                            <div class="card-body">Creato il: {{ $post->created_at->format('d/m/Y') }} alle {{ $post->created_at->format('H:i:s') }}</div>
+                        @else
+                            <div class="card-body">Aggiornato il {{ $post->updated_at->format('d/m/Y') }} alle {{ $post->updated_at->format('H:i:s') }}  </div>
+                        @endif
                         <a class="btn btn-primary w-50 m-2" href="{{route('admin.posts.index')}}">torna alla lista</a>
+                        <a class="btn btn-warning w-50 m-2" href="{{route('admin.posts.edit', $post->id)}}">Modifica</a>
                         
                         <form action="{{route('admin.posts.destroy', $post->id)}}" method="POST">
                             @csrf
