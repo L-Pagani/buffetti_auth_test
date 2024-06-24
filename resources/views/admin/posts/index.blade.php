@@ -12,6 +12,7 @@
                                 {{ $post->category ? $post->category->name : 'senza categoria' }}
                             </h6>
                             <div class="card-body">{{ $post->description }}</div>
+                            <div class="card-body">{{ $post->user->name }}</div>
                         </div>
                     </div>
                 @endforeach

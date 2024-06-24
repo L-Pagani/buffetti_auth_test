@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+
 class PostRequest extends FormRequest
 {
     /**
@@ -23,7 +24,8 @@ class PostRequest extends FormRequest
     {
         return [
             "name" => ["required", "min:5", "max:50"],
-            "description" => ["required", "min:5", "max:300"]
+            "description" => ["required", "min:5", "max:300"],
+
         ];
     }
 }
