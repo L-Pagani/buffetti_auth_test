@@ -10,19 +10,24 @@
                             Modifica post
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.posts.update', $post->id) }}" method="POST">
+                            <form action="{{ route('admin.posts.update', $post->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('PATCH')
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Titolo</label>
-                                    <input type="text" class="form-control" id="name" name="name" value="{{ $post->name }}">
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        value="{{ $post->name }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Descrizione</label>
                                     <textarea class="form-control" id="description" name="description" rows="3">{{ $post->description }}</textarea>
                                 </div>
-                              
-                                <button type="submit" class="btn btn-primary">Salva</button>
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Immagine</label>
+                                    <input type="file" class="form-control" id="image" name="image">
+
+                                    <button type="submit" class="btn btn-primary">Salva</button>
                             </form>
                         </div>
                     </div>

@@ -15,7 +15,7 @@
             @endif
         </div>
         <div class="row">
-            <form action="{{ route('admin.posts.store') }}" method="POST">
+            <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 {{-- name description --}}
                 <div class="mb-3">
@@ -27,6 +27,18 @@
                     @enderror
                 </div>
                 <div class="mb-3">
+                    <label for="categories" class="form-label">categories</label>
+                    <select class="form-select" name="categories" id="categories">
+                        <option value="">Seleziona una categoria</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('category_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
                     <label for="description" class="form-label">description</label>
                     <input type="text" class="form-control @error('description') is-invalid @enderror" id="description"
                         name="description" value="{{ old('description') }}">
@@ -34,6 +46,8 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+                <label for="img" class="form-label">Immagine</label>
+                <input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name="img">
                 <button type="submit" class="btn btn-primary">Inserisci</button>
             </form>
         </div>

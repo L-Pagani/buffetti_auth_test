@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
-use illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Category;
 
 class PostController extends Controller
 {
@@ -15,8 +17,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
+        $categories = Category::all();
 
-        return view("admin.posts.index", compact("posts"));
+        return view("admin.posts.index", compact("posts", "categories"));
     }
 
     /**
@@ -24,7 +27,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("admin.posts.create");
+        $categories = Category::all();
+        return view("admin.posts.create", compact("categories"));
     }
 
     /**
@@ -34,10 +38,15 @@ class PostController extends Controller
     {
         $validati = $request->validated();
         $user = Auth::user();
+        $img_path = Storage::disk("public")->put('/uploads', $request['img']);
         $newPost = new Post();
+        $validati["img"] = $img_path;
         $newPost->user_id = $user->id;
         $newPost->fill($validati);
         $newPost->save();
+        if ($newPost->categories) {
+            $newPost->categories()->attach($request->categories);
+        }
 
         // return redirect()->route("admin.posts.show", $newPost->id);
         return redirect()->route("admin.posts.index",);
@@ -68,6 +77,9 @@ class PostController extends Controller
         $post->updated_at = now();
         $post->update($validati);
         return redirect()->route("admin.posts.show", $post->id);
+        if ($post->categories) {
+            $post->categories()->sync($request->categories->id);
+        }
     }
 
     /**
