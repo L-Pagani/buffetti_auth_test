@@ -9,9 +9,14 @@
                         <div class="card-header">
                             {{ $post->name }}
                             <h6 class="card-subtitle my-1 text-muted">
-                                @foreach ($post->categories as $category)
-                                    {{ $category->name }}{{ !$loop->last ? ',' : '' }}
-                                @endforeach
+                                @if ($post->categories->count() > 0)
+                                    Categorie:
+                                    @foreach ($post->categories as $category)
+                                        {{ $category->name }}{{ !$loop->last ? ', ' : '' }}
+                                    @endforeach
+                                @else
+                                    {{ ' Nessuna categoria' }}
+                                @endif
                             </h6>
                         </div>
                         <div class="card-body">{{ $post->description }}</div>

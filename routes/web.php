@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController; //<---- Import del controller precedentemente creato!
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Models\Post;
 
 /*
@@ -17,8 +18,7 @@ use App\Models\Post;
 */
 
 Route::get('/', function () {
-    $posts = Post::all();
-    return view('welcome', compact("posts"));
+    return view('welcome');
     // return view('welcome');
 });
 
@@ -31,7 +31,7 @@ Route::middleware(['auth'])
         // - il percorso "/" diventa "admin/"
         // - il nome della rotta ->name("dashboard") diventa ->name("admin.dashboard")
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
+        Route::resource("categories", CategoryController::class);
         Route::resource("posts", PostController::class);
     });
 

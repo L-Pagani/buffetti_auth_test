@@ -28,13 +28,14 @@
                 </div>
                 <div class="mb-3">
                     <label for="categories" class="form-label">categories</label>
-                    <select class="form-select" name="categories" id="categories">
+                    <select class="form-select" name="categories[]" id="categories" multiple>
                         <option value="">Seleziona una categoria</option>
+
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
-                    @error('category_id')
+                    @error('categories')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -50,6 +51,7 @@
                 <input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name="img">
                 <button type="submit" class="btn btn-primary">Inserisci</button>
             </form>
+
         </div>
     </div>
 @endsection
