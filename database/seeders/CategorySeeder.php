@@ -16,15 +16,15 @@ class CategorySeeder extends Seeder
         $categories = [
             [
                 'name' => 'cronaca',
-                'description' => 'articoli che riguardano fatti di cronaca',
+
             ],
             [
                 'name' => 'tecnologia',
-                'description' => 'troverai le più recenti novità in ambito hi-tech',
+
             ],
             [
                 'name' => 'sport',
-                'description' => 'non guardo il calcio',
+
             ]
         ];
 
