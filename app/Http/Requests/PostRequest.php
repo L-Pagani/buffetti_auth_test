@@ -27,7 +27,7 @@ class PostRequest extends FormRequest
     {
         return [
             "name" => ["required", "min:5", "max:50"],
-            "description" => ["required", "min:5", "max:300"],
+            "description" => ["required", "min:5", "max:1000"],
             "img" => ["nullable", File::image()],
             "categories" => ["nullable", "exists:categories,id"]
         ];
