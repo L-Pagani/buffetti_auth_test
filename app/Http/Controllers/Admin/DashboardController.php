@@ -14,6 +14,7 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         $posts = Post::all();
-        return view('admin.dashboard', compact('user', 'posts'));
+        $personalPosts = Post::where('user_id', $user->id)->get();
+        return view('admin.dashboard', compact('user', 'posts', 'personalPosts'));
     }
 }

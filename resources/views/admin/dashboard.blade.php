@@ -21,6 +21,7 @@
                         <p>User-name: {{ $user->name }}</p>
                         <p>User-email: {{ $user->email }}</p>
                         <p>Number of posts: {{ $posts->count() }}</p>
+                        <p>Your posts: {{ $personalPosts->count() }}</p>
                     </div>
                 </div>
             </div>
