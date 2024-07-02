@@ -28,9 +28,12 @@
                             <div class="card-body">Aggiornato il {{ $post->updated_at->format('d/m/Y') }} alle
                                 {{ $post->updated_at->format('H:i:s') }} </div>
                         @endif
-                        <div class="card-body">
-                            <img src="{{ asset('storage/' . $post->img) }}" alt="{{ $post->name }}" class="img-fluid">
-                        </div>
+                        @if ($post->img)
+                            <div class="card-body">
+                                <img src="{{ asset('storage/' . $post->img) }}" alt="{{ $post->name }}"
+                                    class="img-fluid">
+                            </div>
+                        @endif
                         <a class="btn btn-primary w-50 m-2" href="{{ route('admin.posts.index') }}">torna alla lista</a>
                         <a class="btn btn-warning w-50 m-2" href="{{ route('admin.posts.edit', $post->id) }}">Modifica</a>
 

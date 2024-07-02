@@ -1,1 +1,26 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+
+.post-logo {
+    width: 10rem;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    border-radius: 50%;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    background-color: #920c18;
+
+}
+
+.text-logo {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #920c18;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+}
+
+
+.small {
+    width: 5rem;
+}

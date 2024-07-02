@@ -29,7 +29,7 @@
                 <div class="mb-3">
                     <label for="categories" class="form-label">categories</label>
                     <select class="form-select" name="categories[]" id="categories" multiple>
-                        <option value="">Seleziona una categoria</option>
+                        <option disabled>Seleziona le categorie (ctrl + click)</option>
 
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
