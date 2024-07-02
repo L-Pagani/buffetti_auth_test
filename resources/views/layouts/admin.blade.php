@@ -58,6 +58,12 @@
                                 <i class="fa-solid fa-list fa-lg fa-fw"></i> Posts List
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.categories.index' ? 'bg-secondary' : '' }}"
+                                href="{{ route('admin.categories.index') }}">
+                                <i class="fa-solid fa-list fa-lg fa-fw"></i> Categories List
+                            </a>
+                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.posts.create' ? 'bg-secondary' : '' }}"
@@ -102,6 +108,12 @@
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.posts.index' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.posts.index') }}">
                                     <i class="fa-solid fa-list fa-lg fa-fw"></i> Posts List
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.categories.index' ? 'bg-secondary' : '' }}"
+                                    href="{{ route('admin.categories.index') }}">
+                                    <i class="fa-solid fa-list fa-lg fa-fw"></i> Categories List
                                 </a>
                             </li>
 
