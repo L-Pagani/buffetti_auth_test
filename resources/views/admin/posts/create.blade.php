@@ -40,6 +40,12 @@
                     @enderror
                 </div>
                 <div class="mb-3">
+                    <a href="{{ route('admin.categories.create') }}" class="btn btn-success">
+                        Aggiungi Categoria
+                    </a>
+                </div>
+
+                <div class="mb-3">
                     <label for="description" class="form-label">description</label>
                     <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
                         value="{{ old('description') }}"> 
@@ -52,7 +58,6 @@
                 <input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name="img">
                 <button type="submit" class="btn btn-primary">Inserisci</button>
             </form>
-
         </div>
     </div>
 @endsection
