@@ -38,9 +38,11 @@ class PostController extends Controller
     {
         $validati = $request->validated();
         $user = Auth::user();
-        $img_path = Storage::disk("public")->put('/uploads', $request['img']);
         $newPost = new Post();
-        $validati["img"] = $img_path;
+        if ($request->img) {
+            $img_path = Storage::disk("public")->put('/uploads', $request['img']);
+            $validati["img"] = $img_path;
+        }
         $newPost->user_id = $user->id;
         $newPost->fill($validati);
         $newPost->save();
