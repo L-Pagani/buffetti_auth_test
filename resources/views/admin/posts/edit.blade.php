@@ -25,10 +25,17 @@
                                         value="">{{ $post->description }} </textarea>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="image" class="form-label">Immagine</label>
-                                    <input type="file" class="form-control" id="image" name="image">
+                                    <label for="img" class="form-label">Immagine</label>
+                                    <input type="file" class="form-control" id="img" name="img"
+                                        value="{{ old('img') ?? $post->img }}">
+                                    <div id="prev_box" class="{{ $post->img ? '' : 'd-none' }}">
+                                        <img class=" pic-preview" id="thumb" src="{{ asset('storage/' . $post->img) }}"
+                                            alt="your img" />
+                                        <div id="erase_prev" class="btn btn-danger">remove picture</div>
+                                    </div>
+                                </div>
 
-                                    <button type="submit" class="btn btn-primary">Salva</button>
+                                <button type="submit" class="btn btn-primary">Salva</button>
                             </form>
                         </div>
                     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Category;
@@ -73,10 +74,16 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PostRequest $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
         $validati = $request->validated();
         $post->updated_at = now();
+        if ($request->img) {
+            $img_path = Storage::disk("public")->put('/uploads', $request['img']);
+            $validati["img"] = $img_path;
+        } else {
+            $validati["img"] = null;
+        }
         $post->update($validati);
         return redirect()->route("admin.posts.show", $post->id);
         if ($post->categories) {
