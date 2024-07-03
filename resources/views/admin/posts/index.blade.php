@@ -6,18 +6,15 @@
             <div class="row row-cols-1 row-cols-md-3 g-4 py-4">
                 @foreach ($posts as $post)
                     <div class="col">
-                        <div class="card">
+                        <div class="card text-center">
                             <div class="card-header">
-                                {{ $post->name }}
-
-                                <h6 class="card-subtitle my-1 text-muted">
-
-
-
+                                <h2 class="text-center"> {{ $post->name }}</h2>
                             </div>
-                            <div class="card-body">{{ $post->description }}</div>
+                            <div class="card-body post-content">
+                                {{ $post->updated_at }}
+                                <a class="btn btn-primary w-50 m-2" href="{{ route('admin.posts.show', $post->id) }}">Apri</a>
+                            </div>
 
-                            <a class="btn btn-primary w-50 m-2" href="{{ route('admin.posts.show', $post->id) }}">Dettagli</a>
 
 
                         </div>

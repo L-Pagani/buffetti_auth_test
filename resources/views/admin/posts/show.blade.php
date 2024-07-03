@@ -7,7 +7,7 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            {{ $post->name }}
+                            <h3> {{ $post->name }}</h3>
                             <h6 class="card-subtitle my-1 text-muted">
                                 @if ($post->categories->count() > 0)
                                     Categorie:
@@ -19,8 +19,7 @@
                                 @endif
                             </h6>
                         </div>
-                        <div class="card-body">{{ $post->description }}</div>
-                        <div class="card-body">{{ $post->user->name }}</div>
+                        <div class="card-body post-content">{{ $post->description }}</div>
                         @if ($post->created_at == $post->updated_at)
                             <div class="card-body">Creato il: {{ $post->created_at->format('d/m/Y') }} alle
                                 {{ $post->created_at->format('H:i:s') }}</div>
@@ -48,3 +47,15 @@
         </div>
     </div>
 @endsection
+
+<style scoped lang="scss">
+    .post-content {
+        min-height: 100px;
+        width: 80%;
+        margin: 10px auto;
+        box-shadow: 0px 5px 1px 2px rgb(0 0 0 / 15%);
+        background-color: #f1efec91;
+        border-radius: 10px;
+        font-family: 'Times New Roman', Times, serif
+    }
+</style>
