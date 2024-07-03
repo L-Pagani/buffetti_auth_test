@@ -14,9 +14,6 @@
                                 {{ $post->updated_at }}
                                 <a class="btn btn-primary w-50 m-2" href="{{ route('admin.posts.show', $post->id) }}">Apri</a>
                             </div>
-
-
-
                         </div>
                     </div>
                 @endforeach
