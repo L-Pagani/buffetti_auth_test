@@ -9,6 +9,8 @@ use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Category;
+use App\Models\User;
+
 
 class PostController extends Controller
 {
@@ -17,6 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
         $posts = Post::all()->where('user_id', auth()->id());
         $categories = Category::all();
 
@@ -60,6 +63,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        if (Auth::user()->cannot('view', $post)) {
+            abort(403, "Non hai i permessi per visualizzare questo post");
+        }
         return view("admin.posts.show", compact("post"));
     }
 
@@ -68,6 +74,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        if (Auth::user()->cannot('update', $post)) {
+            abort(403, "Non hai i permessi per modificare questo post");
+        }
         return view("admin.posts.edit", compact("post"));
     }
 
@@ -76,6 +85,9 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
+        if ($request->user()->cannot('update', $post)) {
+            abort(403, "Non hai i permessi per modificare questo post");
+        }
         $validati = $request->validated();
         $post->updated_at = now();
         if ($request->img) {
